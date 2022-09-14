@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="800" height="600"></canvas>
+</body>
+
+<script>
+    let ctx = document.getElementById("canvas").getContext("2d");
+    ctx.beginPath();
+    ctx.arc(100, 100, 50, 0, Math.PI * 2, false);
+    ctx.fillStyle = "rgba(255,0,0,1)"; // 红色
+    ctx.fill();
+    ctx.strokeStyle = "rgba(255,0,0,1)";
+    ctx.stroke();
+</script>
+
+</html>
