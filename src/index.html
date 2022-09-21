@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tank Game</title>
+</head>
+
+<body></body>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/pixi.js/6.5.3/browser/pixi.js"></script>
+
+<script>
+    // 1.创建root容器
+    const stage = new PIXI.Container()
+
+    // 2.创建渲染器
+    const renderer = PIXI.autoDetectRenderer({
+        width: 800,
+        height: 600,
+        backgroundColor: 0xff272829,
+        antialias: true,
+        resolution: window.devicePixelRatio,
+        autoDensity: true,
+        powerPreference: 'high-performance',
+    });
+    renderer.autoResize = true;
+    const canvasDom = renderer.view;
+    document.body.appendChild(canvasDom);
+
+    // 3.数据准备，位置，纹理等
+    let [wallList, castleList] = [[], []]
+    for (let i = 0; i < 40; i++) {
+        wallList.push({
+            x: (i + 1) * 20,
+            y: 200
+        })
+    }
+
+    const wallTexture = await PIXI.Texture.from('/assets/wall.png');
+
+    for (let i = 0; i < wallList.length; i++) {
+        const wall = wallList[i];
+        const { x, y } = wall
+        const wallSprite = new PIXI.Sprite(wallTexture)
+        wallSprite.position.set(x, y)
+        stage.addChild(wallSprite)
+    }
+
+    const graphics = new PIXI.Graphics();
+    // Rectangle
+    graphics.beginFill(0xDE3249);
+    graphics.drawRect(50, 50, 100, 100);
+    graphics.endFill();
+    stage.addChild(graphics)
+
+    console.log(stage);
+
+    renderer.render(stage)
+
+</script>
+
+</html>
