@@ -90,23 +90,28 @@
     });
     renderer.autoResize = true;
     const canvasDom = renderer.view;
+
+    // 3.挂载绘制上下文容器
     document.body.appendChild(canvasDom);
 
-    // 3.数据准备，位置，纹理等
+    // 4.绘制数据准备
     // const wallTexture = PIXI.Texture.from('./assets/wall.png');
     // const wallSprite = new PIXI.Sprite(wallTexture);
+    // 创建墙
     const wall = new PIXI.Graphics();
     wall.lineStyle(50, 0xCCCCCC, 1);
     wall.beginFill(0xffffff);
     wall.drawRect(0, 0, 800, 600);
     wall.endFill();
 
+    // 创建城堡
     const castle = new PIXI.Graphics();
     castle.lineStyle(25, 0xCCCCCC, 1);
     castle.beginFill(0xffffff);
     castle.drawRect(400, 485, 100, 100);
     castle.endFill();
 
+    // 创建坦克
     const tank = new PIXI.Graphics()
     const path = [
         300, 550,
@@ -122,13 +127,15 @@
     tank.drawPolygon(path);
     tank.endFill();
 
-    // init
+    // 5.添加图元到根图层
     stage.addChild(wall)
     stage.addChild(castle)
     stage.addChild(tank)
+
+    // 6.渲染根节点
     renderer.render(stage)
 
-    // update
+    // 7.更改绘制数据，重新绘制和渲染
     const tankInstance = new Tank(renderer, stage, tank)
     window.addEventListener('keyup', function (e) {
         const { keyCode } = e
